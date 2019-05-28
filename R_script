@@ -1,0 +1,42 @@
+results<-read.csv('VRExperiment2.csv', TRUE)
+
+//Boxplot voor verdeling van leeftijden
+boxplot(results$Geboortedatum~results$Geslacht, horizontal=TRUE, ylab="Geslacht", xlab="Leeftijd", main="Verdeling leeftijd proefpersonen per geslacht")
+
+//Barplot van motivatie bij testpersonen
+motivationTable<-table(results$Motivatie)*4
+barplot(motivationTable, col="blue", ylim=c(0,100), ylab = "Procent", main = "Personen die zich gemotiveerd voelen om hun oefeningen uit te voeren")
+
+//Barplot van mensen die wel eens oefensessie overslagen
+overslagenTable<-table(results$Overslaan)*4
+row.names(overslagenTable)<-c("Heel af en toe","Nooit","Soms","Vaak")
+barplot(overslagenTable, col="blue", ylim=c(0,100), ylab = "Procent", main = "Personen die wel eens een oefensessie overslaan")
+
+//Boxplot van pijnervaring zonder VR
+boxplot(results$Pijnervaring_voor, horizontal = TRUE, xlab="Pijnervaring op schaal van 10", main="Pijnervaring voor gebruik zonder VR")
+
+//Boxplot van pijnervaring met VR
+boxplot(results$Pijnervaring_na, horizontal = TRUE, xlab="Pijnervaring op schaal van 10", main="Pijnervaring voor gebruik met VR")
+
+//Barplot van mensen die een verschil in pijnervaring ondervonden
+tempTable<-table(results$Verschil_pijnervaring)*4
+a<-table("Neen")
+differenceTable<-c(tempTable,a)
+barplot(differenceTable, col="blue", ylim=c(0,100), ylab = "Procent", main = "Verschil in pijn met en zonder VR")
+
+//Barplot van mensen die geloven dat het zou motiveren
+believersTable<-table(results$Meer_motivatie_VR)*4
+barplot(believersTable, col="blue", ylim=c(0,100), ylab = "Procent", main = "Personen die denken dat VR hen zou motiveren")
+
+//Barplot van mensen die denken dat er potentieel zit in VR
+tempTable<-table(results$Potentieel_VR)*4
+a<-table("Neen")
+potentialTable<-c(tempTable,a)
+barplot(potentialTable, col="blue", ylim=c(0,100), ylab = "Procent", main = "Potentieel van VR in de revalidatie")
+
+//Barplot van mensen die denken dat prof. VR meer invloed zou hebben op pijnervaring
+tempTable<-table(results$Prof_VR_Meer_Invloed)*4
+a<-table("Neen")
+professionalTable<-c(tempTable,a)
+barplot(professionalTable, col="blue", ylim=c(0,100), ylab = "Procent", main = "Zou professionelere VR meer invloed hebben op de pijnervaring?")
+
